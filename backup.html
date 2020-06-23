@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <img src="running-track-cropped.jpg" alt="Running track">
+        <div class="timer">
+            <input class="run-input" type="text" placeholder="Minutes running">
+            <input class="walk-input" type="text" placeholder="Minutes walking">
+            <p class="run-time"></p>
+            <button class="start">START</button><br>
+            <button class="reset">RESET</button>
+        </div>
+
+    </div>
+
+    <audio class="run" src="run.mp3" preload="auto"></audio>
+    <audio class="walk" src="walk.mp3" preload="auto"></audio>
+
+    <script>
+
+        const runTime = document.querySelector(".run-time");
+        const start = document.querySelector(".start");
+        const reset = document.querySelector(".reset");
+        const run = document.querySelector(".run");
+        const walk = document.querySelector(".walk");
+        let runInput = document.querySelector('.run-input');
+        let walkInput = document.querySelector('.walk-input');
+
+        let totalMin = '00';
+        let minAdd = 0;
+        let totalSec = '00';
+        let secAdd = 0;
+
+        runTime.textContent = `M: ${totalMin} S: ${totalSec}`;
+
+
+
+        start.addEventListener('click', startTimer);
+
+
+        function startTimer() {
+            const startNow = setInterval(runTimePlus, 1000);
+
+            reset.addEventListener('click', resetTimer);
+
+            reset.addEventListener('click', () => {
+
+                totalMin = '00';
+                minAdd = 0;
+                totalSec = '00';
+                secAdd = 0;
+                runTime.textContent = `M: ${totalMin} S: ${totalSec}`;
+                runInput.value = "";
+                walkInput.value = "";
+
+            });
+
+            function resetTimer() {
+                clearInterval(startNow);
+
+            }
+        }
+
+        function runTimePlus() {
+
+         
+
+            if ((minAdd === runInput.value - 1) && (secAdd === 60)) {
+                walk.play();
+            };
+
+            if ((minAdd === (+runInput.value + +walkInput.value) - 1) && (secAdd === 60)) {
+                run.play();
+               
+
+            };
+
+            if (secAdd === 60) {
+                secAdd = 0;
+                ++minAdd;
+                totalSec = ('0' + secAdd).substr(-2);
+                totalMin = ('0' + minAdd).substr(-2);
+                runTime.textContent = `M: ${totalMin} S: ${totalSec}`;
+                ++secAdd;
+
+            } else {
+                totalSec = ('0' + secAdd).substr(-2);
+                totalMin = ('0' + minAdd).substr(-2);
+                runTime.textContent = `M: ${totalMin} S: ${totalSec}`;
+                ++secAdd;
+            };
+
+        
+
+
+        }
+
+    </script>
+
+</body>
+
+</html>
