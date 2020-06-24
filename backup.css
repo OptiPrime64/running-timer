@@ -1,0 +1,61 @@
+.container {
+
+    position: relative;
+    text-align: center;
+}
+
+img {
+width: 75%;
+    /* opacity: 0.5; */
+
+}
+
+.timer {
+
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+
+.run-time {
+    padding: 10px;
+    background-color: white;
+    border-radius: 9px;
+    border: solid;
+    border-color: #7f7f7f;
+    border-width: 5px;
+    font-size: 49px;
+    line-height: .75;
+    margin: auto auto 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.start, .reset {
+    background-color: black;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    font-size: large;
+    margin-bottom: 10px;
+}
+
+.rnd-display {
+
+    position: absolute;
+    top: 68%;
+    left: 81%;
+    transform: translate(-50%, -50%);
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-weight: bolder;
+    font-size: larger;
+    margin: 0;
+
+}
+
+.remove-rnd {
+    display: none;
+}

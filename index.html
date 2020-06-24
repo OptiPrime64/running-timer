@@ -10,13 +10,25 @@
 
 <body>
     <div class="container">
-        <img src="running-track-cropped.jpg" alt="Running track">
+
         <div class="timer">
-            <input class="run-input" type="text" placeholder="Minutes running">
-            <input class="walk-input" type="text" placeholder="Minutes walking">
-            <input class="rnd-number" type="text" placeholder="Number of rounds">
+
+          <div class="info-input-container">
+
+            <div class="info-input">
+                <input class="run-input" type="text" placeholder="00"> MINUTES RUNNING
+            </div>
+            <div class="info-input">
+                <input class="walk-input" type="text" placeholder="00"> MINUTES WALKING
+            </div>
+            <div class="info-input">
+                <input class="rnd-input" type="text" placeholder="00"> ROUNDS
+            </div>
+
+          </div>
+            
             <p class="run-time"></p>
-            <button class="start">START</button><br>
+            <button class="start">START</button>
             <button class="reset">RESET</button>
             <p class="rnd-display"></p>
         </div>
@@ -30,22 +42,27 @@
     <script>
 
         const runTime = document.querySelector(".run-time");
+
         const start = document.querySelector(".start");
         const reset = document.querySelector(".reset");
+
         const run = document.querySelector(".run");
         const walk = document.querySelector(".walk");
         const woComplete = document.querySelector(".wo-complete")
+
         const rndDisplay = document.querySelector(".rnd-display")
+
         let runInput = document.querySelector('.run-input');
         let walkInput = document.querySelector('.walk-input');
 
         let counter = 0;
-        let rnd = document.querySelector(".rnd-number");
+        let rndInput = document.querySelector(".rnd-input");
 
         let totalMin = '00';
+        let totalSec = '00';
         let secAdd;
         let minAdd;
-        let totalSec = '00';
+
         let noRun;
 
         runTime.textContent = `M: ${totalMin} S: ${totalSec}`;
@@ -53,25 +70,24 @@
         start.addEventListener('click', startTimer);
 
 
-
         function startTimer() {
- 
+
             counter = 0;
             minAdd = 0;
             secAdd = 0;
-            noRun  = true;
+            noRun = true;
+
+            rndDisplay.classList.remove('remove-rnd');
+
             const startNow = setInterval(function () {
 
                 rndDisplay.textContent = `ROUND ${counter + 1}`;
 
                 if ((minAdd === runInput.value - 1) && (secAdd === 60)) {
                     walk.play();
-
-
                 };
 
                 if ((minAdd === (+runInput.value + +walkInput.value) - 1) && (secAdd === 60)) {
-
                     ++counter;
                     totalMin = '00';
                     minAdd = 0;
@@ -80,14 +96,12 @@
                     runTime.textContent = `M: ${totalMin} S: ${totalSec}`;
                 };
 
-
-
-                if (counter === +rnd.value) {
+                if (counter === +rndInput.value) {
                     woComplete.play();
                     rndDisplay.textContent = ``;
                     runInput.value = "";
                     walkInput.value = "";
-                    rnd.value = "";
+                    rndInput.value = "";
                     noRun = false;
                     clearInterval(startNow);
                 };
@@ -122,8 +136,7 @@
                     runTime.textContent = `M: ${totalMin} S: ${totalSec}`;
                     runInput.value = "";
                     walkInput.value = "";
-                    rnd.value = "";
-                    
+                    rndInput.value = "";
 
                 });
 
@@ -136,8 +149,6 @@
             }, 1000);
 
         }
-
-
 
     </script>
 

@@ -1,61 +1,77 @@
-.container {
+body {
+    background-image: url('running-track-cropped.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+}
 
-    position: relative;
+input {
+    width: 20px;
+    margin: 4px;
+    border: none;
+    border-radius: 3px;
+    padding: 1px 4px;
+}
+
+.info-input {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.info-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.container {
     text-align: center;
 }
 
-img {
-width: 75%;
-    /* opacity: 0.5; */
-
-}
-
 .timer {
-
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    height: 100vh;
+    margin-top: 50%;
 }
-
 
 .run-time {
     padding: 10px;
     background-color: white;
     border-radius: 9px;
-    border: solid;
-    border-color: #7f7f7f;
-    border-width: 5px;
     font-size: 49px;
     line-height: .75;
-    margin: auto auto 10px;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 10px auto;
 }
 
 .start, .reset {
     background-color: black;
     border: none;
     color: white;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: large;
-    margin-bottom: 10px;
+    width: 78px;
+    margin: 3px;
 }
 
 .rnd-display {
-
-    position: absolute;
-    top: 68%;
-    left: 81%;
-    transform: translate(-50%, -50%);
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-weight: bolder;
-    font-size: larger;
-    margin: 0;
-
+    font-size: 26px;
+    margin: 5px;
 }
 
 .remove-rnd {
     display: none;
+}
+
+@media (min-width: 520px) {
+    .timer {
+        justify-content: center;
+        margin-top: 0;
+    }
 }
